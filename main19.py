@@ -151,6 +151,38 @@ def exitcode(exit):
     text_speech.say("Thank you")
     text_speech.runAndWait()
     exit(0)
+def amountdetails():
+    #base charge  =rs15
+    #additional per hour charge + = 20
+    # 3 hours = 15+20+20 = 55
+    
+    base_amount = 15
+    extra_charge = 0
+    
+    parked_vehicle_details = ""
+    for i in range(len(Vehicle_Number)):
+         parked_vehicle_details += "Vehicle Number: " + Vehicle_Number[i] + "\nVehicle Type: " + Vehicle_Type[i] + "\nVehicle Name: " + vehicle_Name[i] + "\nOwner Name: " + Owner_Name[i] + "\nDate: " + Date[i] + "\nTime: " + Time[i] + "\nTotal Amount:" + 'Rs'+str(base_amount + extra_charge) +"\n\n"
+    amount_details = Toplevel()
+    amount_details.title("Amount details")
+    amount_details.config(bg= "#177DDC")
+    label = Label(amount_details, text = parked_vehicle_details, font  = ('Arial Rounded MT Bold', 14), width = 30, padx = 20, pady = 10 ,bg = '#177DDC', fg = '#fff')
+    label.pack()
+    
+    print(Time)
+
+
+    # parked_vehicle_details = ""
+    # for i in range(len(Vehicle_Number)):
+    #     parked_vehicle_details += "Vehicle Number: " + Vehicle_Number[i] + "\nVehicle Type: " + Vehicle_Type[i] + "\nVehicle Name: " + vehicle_Name[i] + "\nOwner Name: " + Owner_Name[i] + "\nDate: " + Date[i] + "\nTime: " + Time[i] + "\n\n"
+
+    # show_vehicle.config(bg = )
+    # label = Label(show_vehicle, text = parked_vehicle_details, font  = ('Arial Rounded MT Bold', 14), width = 30, padx = 20, pady = 10 ,bg = '#177DDC', fg = '#fff')
+    # label.pack()
+
+    
+
+
+
 
 def checkInput(e):
     global b11
@@ -163,7 +195,7 @@ def checkInput(e):
     elif e ==  'View left parking space':
         b11 = Button(main, text = 'Continue', command = viewLeftSpace, bg = '#49aa19', fg = '#fff').grid(row =3, column = 1, stick = W+E+N+S, pady = 10)
     elif e ==  'Amount details':
-        b11 = Button(main, text = 'Continue', command = print, bg = '#49aa19', fg = '#fff').grid(row =3, column = 1, stick = W+E+N+S, pady = 10)
+        b11 = Button(main, text = 'Continue', command = amountdetails, bg = '#49aa19', fg = '#fff').grid(row =3, column = 1, stick = W+E+N+S, pady = 10)
     elif e ==  "Bill":
         b11 = Button(main, text = 'Continue', command = print, bg = '#49aa19', fg = '#fff').grid(row =3, column = 1, stick = W+E+N+S, pady = 10)
     elif e ==  "Close Program":
@@ -183,91 +215,3 @@ drop.config(bg = '#49aa19', fg = '#fff', borderwidth=0, border=0)
 drop.grid(row = 2, column = 0,columnspan=2, pady=15)
 b11 = Button(main, text = 'Please select an action to contiue', state=DISABLED, bg= '#49aa19',command=lambda:print("Hello World"), fg = '#fff').grid(row = 3, column = 1, stick = W+E+N+S, pady = 10)
 main.mainloop()
-
-# import pandas as pd
-
-# from tkinter import *
-# from tkinter import filedialog
-# from tkinter import messagebox
-# from tkinter import ttk
-# from threading import Thread
-# global main
-# main = Tk()
-# main.title('Vehicle Parking Management System')
-# main.config(bg = '#177DDC')
-# #Import Time
-# import time
-# import pyttsx3 
-# from datetime import date
-# from datetime import datetime
-# cur=time.localtime()
-# current_time=time.strftime("%H:%M%p",cur)
-# today=date.today()
-# current_date=today.strftime('%d-%m-%Y')
-# text_speech = pyttsx3.init()
-# Vehicle_Number=['XXXX-XX-XXXX']
-# Vehicle_Type=['Bike']
-# vehicle_Name=['Intruder']
-# Owner_Name=['Unknown']
-# Date = ['22-22-3636']
-# Time = ['22:22:22']
-# bikes=100
-# cars=250
-# bicycles=78
-
-# # def inputData
-
-# def newWindow():
-#     b11 = Button(main, text = 'Please select an action to contiue', state=DISABLED, bg= '#49aa19',command=lambda:print("Hello World"), fg = '#fff').grid(row = 3, column = 1, stick = W+E+N+S, pady = 10)
-#     global clicked
-#     clicked = StringVar()
-#     clicked.set('Select an action :)')
-
-#     def handleClick(event):
-#         global vehDet, vehNum, vehType, vehName
-#     import pandas as pd
-    
-#     vehDet = ef1.get().strip();
-#     vehNum = ef2.get().strip();
-#     vehType = ef3.get().strip();
-#     vehName = ef4.get().strip();
-
-#     details.destroy()
-#     if(not(vehDet and vehNum and vehType and vehName)):
-#         messagebox.showerror("Failure", "Please fill all the fields")
-#         newWindow()
-#     else:
-#         messagebox.showinfo("Success", "Data Saved Successfully")
-#         data = {'Vehicle_Number':[vehNum], 'Vehicle_Type':[vehType], 'vehicle_Name':[vehName], 'Owner_Name':[vehDet], 'Date':[current_date], 'Time':[current_time]}
-#         df = pd.DataFrame(data)
-#         df.to_csv('vehicle_data.csv',mode='a',header=False)
-#         f = open("vehicle_data.txt","a")
-#         f.write(vehNum + ' '+ vehType + ' ' + vehName + ' ' + vehDet + ' ' + current_date + ' ' + current_time + '\n')
-#         f.close()
-
-#     def onFocus(e):
-#         print("WORKING")
-#     details = Toplevel()
-#     details.title("Enter Details")
-#     details.config(bg = "#177DDC" )
-    
-#     labelMy = Label(details , text = 'Enter the vehicle details :)', font  = ('Arial Rounded MT Bold', 22), width = 30, padx = 20, pady = 10 ,bg = '#177DDC', fg = '#fff').grid(row = 0, column = 0, pady = 5, columnspan=2)
-#     labelField = Label(details, text = "Enter the vehicle number: ", font = ("Arial Rounded MT Bold", 14), bg= "#177DDC", fg="#fff")
-#     labelField.grid(row = 1, column=0)
-#     ef1 = Entry(details, width = 30, font = ("Times New Roman", 15))
-#     ef1.grid(row = 1, column=1)
-#     ef1.bind("<FocusIn>", onFocus)
-#     labelField1 = Label(details, text = "Enter the vehicle type: ", font = ("Arial Rounded MT Bold", 14), bg= "#177DDC", fg="#fff")
-#     labelField1.grid(row = 2, column=0)
-#     ef2 = Entry(details, width = 30, font = ("Times New Roman", 15))
-#     ef2.grid(row = 2, column=1)
-#     labelField3 = Label(details, text = "Enter the vehicle name: ", font = ("Arial Rounded MT Bold", 14), bg= "#177DDC", fg="#fff")
-#     labelField3.grid(row = 3, column=0)
-#     ef3 = Entry(details, width = 30, font = ("Times New Roman", 15))
-#     ef3.grid(row = 3, column=1)
-#     labelField4 = Label(details, text = "Enter the owner name: ", font = ("Arial Rounded MT Bold", 14), bg= "#177DDC", fg="#fff")
-#     labelField4.grid(row = 4, column=0)
-#     ef4 = Entry(details, width = 30, font = ("Times New Roman", 15))
-#     ef4.grid(row = 4, column=1)
-#     btn1 = Button(details, text = "Save", font = ("Arial Rounded MT Bold", 14), bg= "#177DDC", fg="#fff", width = 30, command=handleClick).grid(row = 5, column = 1)
-#     main.mainloop()
